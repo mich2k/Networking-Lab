@@ -16,8 +16,12 @@ in **web.xml** _({ProjName}/src/main/webapp/WEB-INF/web.xml)_
     ```
 
     <servlet-mapping>
-        <servlet-name>PrimaServlet</servlet-name>
-        <url-pattern>/PrimaServlet</url-pattern>
+        <servlet-name>Data</servlet-name>
+        <url-pattern>/Data</url-pattern>
     </servlet-mapping>
     
     ```
+
+    for instance the mapping will be *localhost:8080/PrimoProgetto/Data*
+
+    eclipse will add a new mapping automatically (to the web.xml) for each servlet class created

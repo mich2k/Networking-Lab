@@ -11,7 +11,6 @@
 tar -xvf <image-name>.ova
 qemu-img convert <image-name>-disk001.vmdk <image-name>.qcow2 -O qcow2
 file <image-name>.qcow2
-
 ```
 
 **std path:** _/var/lib/libvirt/images_
@@ -20,7 +19,6 @@ file <image-name>.qcow2
 
 ```
 sudo apt-get update && sudo apt-get install spice-vdagent
-
 ```
 
 

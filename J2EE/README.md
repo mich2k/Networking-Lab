@@ -28,7 +28,7 @@ eclipse will add a new mapping automatically (to the web.xml) for each servlet c
 -   JSTL implementation (tomcat >= 9.0)
 -   JSTL API (tomcat >= 9.0)
 
-### Adding libs to build path in eclipse ide
+### Adding libs to build path in eclipse ide (in WEB-INF/lib)
 
 
 <img src="../res/1.png" alt=""></img>

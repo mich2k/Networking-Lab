@@ -22,3 +22,13 @@ servlet-mapping tag maps the Mapping path point of the servlet on the dynamic we
 
 for instance the mapping will be *localhost:8080/PrimoProgetto/Data*
 eclipse will add a new mapping automatically (to the web.xml) for each servlet class created
+
+## Needed libs for JSTL
+
+-   JSTL implementation (tomcat >= 9.0)
+-   JSTL API (tomcat >= 9.0)
+
+### Adding libs to build path in eclipse ide
+
+
+<img src="../res/1.png" alt=""></img>

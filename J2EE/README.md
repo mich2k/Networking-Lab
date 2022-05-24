@@ -37,7 +37,8 @@ eclipse will add a new mapping automatically (to the web.xml) for each servlet c
 
 <code>
     ss -ltnup | grep :8080
-    
-    
+</code>
+
+<code>   
     kill {pid}
 </code>

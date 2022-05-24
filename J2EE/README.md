@@ -32,3 +32,13 @@ eclipse will add a new mapping automatically (to the web.xml) for each servlet c
 
 
 <img src="../res/1.png" alt=""></img>
+
+## Free tomcat ports 
+
+<code>
+    ss -ltnup | grep :8080
+</code>
+<br>
+<code>   
+    kill {pid}
+</code>

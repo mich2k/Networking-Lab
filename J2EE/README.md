@@ -31,7 +31,7 @@ eclipse will add a new mapping automatically (to the web.xml) for each servlet c
 ### Adding libs to build path in eclipse ide (in WEB-INF/lib)
 
 
-<img src="../res/1.png" alt=""></img>
+<img src="../res/1.png" alt="" width="300px"></img>
 
 ## Free tomcat ports 
 

@@ -49,8 +49,13 @@ int main(int argc, char* argv[]){
 
 
     // non si può usare il sin_address
-    bcopy((char*)server->h_addr, (char*)&server_addr.sin_addr.s_addr, server->h_length); // copio l'indirizzo del server
+    bcopy((char*)server->h_addr_list[0], (char*)&server_addr.sin_addr.s_addr, server->h_length); // copio l'indirizzo del server
     
+
+
+       // !!!!! // # define	h_addr	h_addr_list[0] /* Address, for backward compatibility.*/ FROM netdb.h
+
+
     server_addr.sin_port = htons(portno); // va lasciato
 
     int ret=connect(socketfd, (struct sockaddr*)&server_addr, sizeof(server_addr)); // connessione al server
@@ -66,7 +71,7 @@ int main(int argc, char* argv[]){
     if (n < 0){
         error("errore nella scrittura");
     }
-
+    bzero(buffer,256);
     n = read(socketfd, buffer, 255); // leggo dal socket
     if(n<0){
         error("errore nella lettura");

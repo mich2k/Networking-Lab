@@ -51,7 +51,7 @@ int main(int argc, char* argv[]){
 
     clientlen = sizeof(client_addr); // lunghezza del client
 
-    newsocketfd = accept(socketfd, (struct sockaddr*) &client_addr, &clientlen); // accetto la connessione, restituisce un nuovo socket
+    newsocketfd = accept(socketfd, (struct sockaddr*) &client_addr,(int*) &clientlen); // accetto la connessione, restituisce un nuovo socket
     if(newsocketfd < 0){
         error("errore accept");
     }

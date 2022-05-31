@@ -71,6 +71,5 @@ int main(int argc, char* argv[]){
         error("errore write");
     }
 
-    //! close(socketfd); chiudo lato server o lato client?
     return 0;
 }

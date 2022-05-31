@@ -19,5 +19,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         time.sleep(1)
 
 
-#   python3 server.py 1025
-#   python3 client.py 127.0.0.1 1025
+#   chmod a+x *
+#
+#   ./server.py 1025
+#   ./client.py 127.0.0.1 1025

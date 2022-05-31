@@ -76,6 +76,8 @@ int main(int argc, char* argv[]){
     if(n<0){
         error("errore nella lettura");
     }
+
+    close(socketfd); //! chiudo lato client
     return 0;
 }
 

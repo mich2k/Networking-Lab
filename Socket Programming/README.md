@@ -3,13 +3,13 @@
 ## Tipsies
 
 <details>
-<summary>SP</summary>
+<summary>SP General</summary>
 <br>
 -   Socket must always be closed by client
 <br>
--   ./server.?? 1025    (if !hardcoded server wants port)
+-   ./server.?? 1025            (if !hardcoded server wants port)
 <br>
--   ./client.?? 127.0.0.1 1025  (if !hardcoded client wants addr+port)
+-   ./client.?? 127.0.0.1 1025          (if !hardcoded client wants addr+port)
 </details>
 
 
@@ -23,7 +23,7 @@
 <details>
 <summary>Py lang</summary>
 <br>
--   Run 'chmod a+x*' in order to be able to execute './server.py' (exec allowance)
+-   Run ' chmod a+x * ' in order to be able to execute ' ./server.py ' (exec allowance)
 <br>
 -   Be careful with strings (encode/decode utf-8) !!!
 <br>

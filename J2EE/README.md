@@ -35,7 +35,9 @@ Copy the 2 .jar lib files into the proj. lib folder.
 
 dir: '{projName}/src/main/webapp/WEB-INF/lib'
 
-### Second-step Adding libs to build path in eclipse ide (in WEB-INF/lib)
+### Second-step 
+
+Adding libs to build path in eclipse ide (in WEB-INF/lib)
 
 
 <img src="../res/1.png" alt="" width="700px"></img>
@@ -53,6 +55,28 @@ Ensure
 ```
 
 is included on top of index.jsp file
+
+or, to stay safe
+
+```
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+...
+```
+
+
+### Fifth-step
+
+When on a new project ensure to run the code on tomcat through 'Run As' and not using the green run button on top (toolbar), or it would execute back an old random project.
+
+<img src="../res/2.png" alt="" width="700px"></img>
+
+
 
 ## Free tomcat ports 
 

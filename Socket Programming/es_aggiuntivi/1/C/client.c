@@ -11,7 +11,7 @@ void error(char* msg) {
 }
 
 int main(int argc, char* argv[]) {
-    int sockfd, portno=2525, n;
+    int sockfd, portno = 2525, n;
     struct sockaddr_in serv_addr;
     struct hostent* server;
     char buffer[256];
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "usage %s hostname\n", argv[0]);
         exit(0);
     }
-    //portno = atoi(argv[2]);
+    // portno = atoi(argv[2]);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
         error("ERROR opening socket");

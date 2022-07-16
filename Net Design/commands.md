@@ -7,6 +7,7 @@
       - [***Statica***](#statica)
       - [***Dinamica***](#dinamica)
         - [***Configurazione***](#configurazione)
+      - [***Config macchine***](#config-macchine)
     - [***Troubleshooting***](#troubleshooting)
   - [***VLAN***](#vlan)
     - [***1 step: creazione VLAN sullo switch***](#1-step-creazione-vlan-sullo-switch)
@@ -19,6 +20,8 @@
       - [**host-through**](#host-through)
       - [**subnet-through**](#subnet-through)
   - [***Traffic Shaping***](#traffic-shaping)
+    - [***Trasferire file prova per test banda***](#trasferire-file-prova-per-test-banda)
+  - [***Firewalling***](#firewalling)
 - [***Comandi evergreen***](#comandi-evergreen)
 
 
@@ -152,6 +155,19 @@ host client3 {
   }
 ```
 
+#### ***Config macchine***
+
+in `/etc/network/interfaces`
+
+hwaddress forzato alla 3a linea
+
+```
+auto eth0
+iface eth0 inet dhcp
+    hwaddress ether 02:04:06:11:22:33
+```
+
+ciò va fatto per ogni macchina, se una macchina ha un fixed ip address questo va messo nella dhcp config nell ultimo blocco di parentesi.
 
 ### ***Troubleshooting***
 
@@ -171,9 +187,8 @@ host client3 {
 
 #### ***net design***
 
-Strutturo la rete con cavi diritti tra macchine e switch e cavi cross tra gli switch.
+Non serve il cavo cross, va usato solo per interconnettere 2 host.
 
-!!! PEFFAVORE MARESCIA' SI RICORDI **IL CAVO CROSS** PER GLI SWITCH
 
 #### ***config switch vde***
 
@@ -181,9 +196,9 @@ Andare sullo switch->modifica e cambiare la vde startup configuration (altriment
 
 **crea vlan**: `vlan/create vlan_number`  
 
-**associa porte untagged / cavi diritti alla vlan**: `port/setvlan port_number vlan_number`  
+**associa porte esclusivamente untagged / port based / access link**: `port/setvlan port_number vlan_number`  
 
-**associa porte tagged / cavi cross alla vlan**: `vlan/addport vlan_number port_number`
+**associa porte esclusivamente tagged / tag based / trunk link**: `vlan/addport vlan_number port_number`
 
 **stampa config**: `vlan/print`
 
@@ -261,6 +276,79 @@ Routing verso un host: route add -host <target> gw <gwaddr>Routing verso una sub
 
 ## ***Traffic Shaping***
 
+<details>
+<summary> Teoria </summary>
+
+**qdisc**: queueing discipline (disciplina di coda)
+
+Classless qdiscs:
+- pfifo_fast: default
+- tbf: Token Bucket Filter
+- sfq: Stochasting Fairness Queuing
+- red: Random Early Detection
+- codel, fq_codel: Controlled Delay
+
+</details>
+
+Se si vuole rallentare h1>h2 questo comando va eseguito su h1
+
+`tc qdisc add dev <iface>  {root,parent <handle>} {disciplina, come tbf} rate <rate> burst <burst> latency <latency>`
+
+
+_ESEMPIO_
+
+`tc qdisc add dev eth0 root tbf rate 1Mbit burst 10000 latency 50`
+
+
+### ***Trasferire file prova per test banda***
+
+Creo il file: `dd if=/dev/zero of=file.bin bs=1M count=1`
+
+_H2>H1_
+
+(apro porta 8080)
+
+**H2:** `nc -l -p 8080 > /dev/null`
+
+**H1:** `time sh -c “cat file.bin | nc 192.168.1.2 8080 -q1”`
+
+
+## ***Firewalling***
+
+<a href="http://web.mit.edu/rhel-doc/3/rhel-rg-it-3/s1-iptables-options.html"> Sito +100 iptables </a>
+
+
+<details>
+  <summary>
+  IMG Esplicativa iptables
+  </summary>
+<img src="res/1.png" width="400px">
+</details>
+
+Per le operazioni di packet filtering si usa la tabella Filter, che contiene tre catene:
+- _INPUT:_ contiene le regole per i pacchetti destinati ad un  processo locale
+- _OUTPUT:_ contiene le regole per i pacchetti diretti verso  l’esterno
+- _FORWARD:_ contiene le regole per i pacchetti in transito
+
+lista regole: `iptables -L`
+
+cancela regole: `iptables -D [chain] [number]`
+
+struttura:  `iptables[-t tabella] -P catena { ACCEPT | DROP }`
+
+`-P`: definisce la politica
+
+
+
+_ESEMPI:_
+
+- `iptables–t filter –P INPUT DROP`
+- `iptables–t filter –P FORWARD ACCEPT`
+
+<h3> BLOCCARE PORTE </h3>
+
+`iptables -I`
+
 
 # ***Comandi evergreen***
 
@@ -280,4 +368,9 @@ Routing verso un host: route add -host <target> gw <gwaddr>Routing verso una sub
    
     `ifconfig eth0 XXX.XXX.X.X`
 
--   
+  
+
+
+
+
+Made with &hearts; from <a href="https://www.gmichele.it">MG</a>
